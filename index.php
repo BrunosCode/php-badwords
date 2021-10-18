@@ -5,6 +5,7 @@ Stampare di nuovo il paragrafo e la sua lunghezza, dopo aver sostituito con tre 
 
 <?php 
 $text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi dolorum vel eum cum ratione pariatur molestiae eaque, voluptates corporis. Expedita aliquid reiciendis ullam aliquam dicta nemo deserunt. Placeat, voluptas accusantium.";
+$censorship = $_GET["censorship"];
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +17,18 @@ $text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi dolorum 
     <title>PHP Badwords</title>
 </head>
 <body>
-  <p><?php echo $text ?></p> 
-  <p>The text has <?php echo strlen($text) ?> characters.</p> 
+    <h1>Uncensored text</h1>
+    <p><?php echo $text ?></p> 
+    <p>The text has <strong><?php echo strlen($text) ?></strong> characters.</p> 
+
+    <form>
+        <label for="censorship">
+            <input type="text" name="censorship" id="censorship">
+            <button type="submit">Submit</button>
+        </label>
+    </form>
+    <p>Word to censor: <strong><?php echo $censorship ?></strong></p>
+    <h2>Censored Text</h2>
+    <p><?php echo str_replace($censorship, '***', $text) ?></p>
 </body>
 </html>
