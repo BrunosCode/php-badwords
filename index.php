@@ -23,6 +23,7 @@ $censorship = $_GET["censorship"];
 
     <form>
         <label for="censorship">
+            Give my a word to censor
             <input type="text" name="censorship" id="censorship">
             <button type="submit">Submit</button>
         </label>
