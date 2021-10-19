@@ -5,7 +5,13 @@ Stampare di nuovo il paragrafo e la sua lunghezza, dopo aver sostituito con tre 
 
 <?php 
 $text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi dolorum vel eum cum ratione pariatur molestiae eaque, voluptates corporis. Expedita aliquid reiciendis ullam aliquam dicta nemo deserunt. Placeat, voluptas accusantium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi dolorum vel eum cum ratione pariatur molestiae eaque, voluptates corporis. Expedita aliquid reiciendis ullam aliquam dicta nemo deserunt. Placeat, voluptas accusantium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi dolorum vel eum cum ratione pariatur molestiae eaque, voluptates corporis. Expedita aliquid reiciendis ullam aliquam dicta nemo deserunt. Placeat, voluptas accusantium.";
-$censorship = $_GET["censorship"];
+if ( !empty($_GET["censorship"])) {
+    $censorship = $_GET["censorship"];
+    $censured_text = str_replace($censorship, '<span class="censured">***</span>', $text);
+} else {
+    $censorship = "no words censured";
+    $censured_text = $text;
+}
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +41,6 @@ $censorship = $_GET["censorship"];
     </form>
     <p>Word to censor: <strong><?php echo $censorship ?></strong></p>
     <h2>Censored Text</h2>
-    <p><?php echo str_replace($censorship, '<span class="censured">***</span>', $text) ?></p>
+    <p><?php echo $censured_text ?></p>
 </body>
 </html>
